@@ -10,34 +10,71 @@
 
 </head>
 <body>
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <form>
-        <div class="form-group">
-          <label for="usuario">Usuário</label>
-          <input type="text" class="form-control" id="usuario" aria-describedby="userHelp" placeholder="Digite o usuário">
-          <small id="userHelp" class="form-text text-muted">Seu usuário consiste em nome.sobrenome</small>
-        </div>
-        <div class="form-group">
-          <label for="senha">Senha</label>
-          <input type="password" class="form-control" id="senha" placeholder="Digite a senha" >
-        </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="checkbox" class="form-check-input">
-            Lembrar Usuário
-          </label>
-        </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
-      </form>
+   
+                 
+    <div class="container">
+      <div class="row" style="padding-top: 80px;"> 
+         
+          <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+              <div class="panel-heading">
+                <h1 class="panel-title" style="text-align: center;">Login</h1>
+              </div>
+                <div class="panel-body">
+                  <form id="formulario">
+                    <div class="form-group">
+                      <!--label for="usuario">Usuário</label-->
+                      <input type="text" class="form-control" id="usuario" aria-describedby="userHelp" placeholder="Digite o usuário">
+                      <small id="userHelp" class="form-text text-muted">Seu usuário consiste em nome.sobrenome</small>
+                    </div>
+                    <div class="form-group">
+                      <!--label for="senha">Senha</label-->
+                      <input type="password" class="form-control" id="senha" placeholder="Digite a senha" >
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input">
+                        <text class=" text-muted">Lembrar Usuário</text>
+                      </label>
+                    </div>
+                    <button type="submit" id="teste" class="btn btn-lg btn-success btn-block">Entrar</button>
+                  </form>
+                </div>
+            </div>
+          </div>
+       
+      </div>
     </div>
-  </div>
-</div>
 
+     <script type="text/javascript">
+        
+      function mostrarValor() {
+          var nome = document.getElementById("usuario").value;
+          document.cookie = nome;
+          var teste = document.cookie;
+          alert(teste);
+      }
 
-  <script src="libs/jquery/js/jquery-3.2.1.min.js"></script>
-  <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+      // Evento que é executado toda vez que uma tecla for pressionada no input
+      document.getElementById("teste").onkeypress = function(e) {
+          // 13 é a tecla <ENTER>. Se ela for pressionada, mostrar o valor
+          if (e.keyCode == 13) {
+              mostrarValor();
+              e.preventDefault();
+          }
+      }
 
+      // Evento que é executado ao clicar no botão de enviar
+      document.getElementById("teste").onclick = function(e) {
+          mostrarValor();
+          e.preventDefault();
+      }
+      
+
+    </script>
+    <script src="libs/jquery/js/jquery-3.2.1.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+
+      
 </body>
 </html>
