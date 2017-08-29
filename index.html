@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input">
+                        <input type="checkbox" class="form-check-input" id="marcado">
                         <text class=" text-muted">Lembrar Usuário</text>
                       </label>
                     </div>
@@ -46,32 +46,50 @@
       </div>
     </div>
 
-     <script type="text/javascript">
+    <script>
 
-      function mostrarValor() {
-          var nome = document.getElementById("usuario").value;
-          document.cookie = nome;
-          var teste = document.cookie;
-          alert(teste);
+
+      function setCookie(name,exdays)    //função universal para criar cookie
+      {
+        var expires;
+
+        var date;
+        var value;
+        date = new Date(); //  criando o COOKIE com a data atual
+        date.setTime(date.getTime()+(exdays*24*60*60*1000));
+        expires = date.toUTCString();
+        value = document.getElementById("usuario").value;;
+        document.cookie = name+"="+value+"; expires="+expires+"; path=/";
       }
 
-      // Evento que é executado toda vez que uma tecla for pressionada no input
-      document.getElementById("teste").onkeypress = function(e) {
-          // 13 é a tecla <ENTER>. Se ela for pressionada, mostrar o valor
-          if (e.keyCode == 13) {
-              mostrarValor();
-              e.preventDefault();
+      function getCookie()
+      {
+        var c_name = document.cookie; // listando o nome de todos os cookies
+          if(c_name!=undefined && c_name.length > 0) // verificando se o mesmo existe
+          {
+
+          
           }
+      }
+
+      document.getElementById("usuario").onclick = function(e) {
+          getCookie();
+          e.preventDefault();
       }
 
       // Evento que é executado ao clicar no botão de enviar
       document.getElementById("teste").onclick = function(e) {
-          mostrarValor();
+        if(document.getElementById("marcado").checked==true)
+        {
+          setCookie(usuario);
+        }
           e.preventDefault();
       }
 
 
+
     </script>
+
     <script src="libs/jquery/js/jquery-3.2.1.min.js"></script>
     <script src="libs/bootstrap/js/bootstrap.min.js"></script>
 
